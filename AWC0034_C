@@ -1,0 +1,83 @@
+#include <bits/stdc++.h>
+using namespace std;
+typedef long long ll;
+typedef long double ld;
+typedef vector<int> vi;
+typedef vector<long long> vll;
+typedef vector<pair<ll,ll>> vpll;
+typedef vector<vector<ll>> vvll;
+#define PB push_back
+#define F first 
+#define S second 
+
+void PRINTVEC(vll vec){
+    for(ll i=0;i<(ll)vec.size();i++){
+        printf("%lld ",vec[i]);
+    }
+    printf("\n");
+}
+
+int main(){
+    ll n,k,t,ct;
+    scanf("%lld %lld %lld %lld\n",&n,&k,&t,&ct);
+    
+    vll val;
+    ll i=0;
+    while(i<n){
+        
+        ll a;
+        scanf("%lld ",&a);
+        if(a>=t){
+            a=0;
+        }else{
+            a=t-a;
+        }
+        val.PB(a);
+        i++;
+        
+    }
+    
+    vll cost;
+    ll sum=0;
+    ll i2=0;
+    while(i2<n){
+        
+        ll c=val[i2]-sum;
+        if(c<0){
+            c=0;
+        }
+        
+        
+        cost.PB(c);
+        
+        sum=sum+c;
+        if(i2>=k-1){
+            sum=sum-cost[i2-k+1];
+        }
+        
+        //printf("%lld ",sum);
+        
+        i2++;
+    }
+    
+    ll ans=0;
+    ll i3=0;
+    while(i3<n){
+        
+        ans+=cost[i3];
+        
+        
+        i3++;
+    }
+    printf("%lld\n",ct*ans);
+    
+    //printf("%lld\n",ct);
+    //printf("%lld\n",ans);
+    
+    //PRINTVEC(cost);
+    //PRINTVEC(val);
+    
+    
+    
+    return 0;
+}
