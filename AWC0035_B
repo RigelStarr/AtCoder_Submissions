@@ -1,0 +1,117 @@
+#include <bits/stdc++.h>
+using namespace std;
+typedef long long ll;
+typedef long double ld;
+typedef vector<int> vi;
+typedef vector<long long> vll;
+typedef vector<pair<ll,ll>> vpll;
+typedef vector<vector<ll>> vvll;
+#define PB push_back
+#define F first 
+#define S second 
+
+ll mod(ll val){
+    if(val>0){
+        return val;
+    }else{
+        return (-1)*val;
+    }
+    return 0;
+    
+}
+
+ll BSLB(const std::vector<long long>& vec, ll value) { //Binary Search Lower Bound
+    ll low = 0, high = vec.size() - 1;
+    ll answer = -1;
+    
+    while (low <= high) {
+        ll mid = low + (high - low) / 2;
+        if (vec[mid] <= value) {
+            answer = mid;  
+            low = mid + 1;
+        } else {
+            high = mid - 1;
+        }
+    }
+    
+    return answer;
+}
+
+ll BSUV(const std::vector<long long>& vec, ll value) { //Binary Search Upper Value
+    ll low=0, high=vec.size();
+
+    while(low<high) {
+        ll mid=low+(high-low)/2;
+        if(vec[mid]<=value)  
+            low=mid+1;
+        else
+            high=mid;
+    }
+    if(low>0 && vec[low - 1]==value) 
+        return low-1;
+    
+    return high; 
+}
+
+
+void PRINTVEC(vll vec){
+    for(ll i=0;i<(ll)vec.size();i++){
+        printf("%lld ",vec[i]);
+    }
+    printf("\n");
+}
+
+int main(){
+
+    ll n,m;
+    scanf("%lld %lld",&n,&m);
+
+    vll p;
+    vll d;
+    ll i=0;
+    while(i<n){
+        ll a;
+        scanf("%lld ",&a);
+        p.PB(a);
+        i++;
+    }
+
+    ll i2=0;
+    while(i2<m){
+        ll a2;
+        scanf("%lld ",&a2);
+        d.PB(a2);
+        i2++;
+    }
+
+    sort(p.begin(),p.end());
+    sort(d.begin(),d.end());
+
+    ll j=0;
+    ll ans=0;
+    while(j<n){
+        ll b1=BSLB(d,p[j]);
+        //printf("%lld ",b1);
+        ll b2=BSUV(d,p[j]);
+        //printf("%lld\n",b2);
+        
+
+        if(b1==b2){
+            ans+=0;
+        }else{
+            if(b1==-1){
+                b1=0;
+            }
+            if(b2==m){
+                b2=m-1;
+            }
+            ans+=min(mod(p[j]-d[b1]),mod(p[j]-d[b2]));
+        }
+        
+        j++;
+    }
+
+    printf("%lld\n",ans);
+    //PRINTVEC(p2);
+    return 0;
+}
