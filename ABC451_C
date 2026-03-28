@@ -1,0 +1,61 @@
+#include <bits/stdc++.h>
+using namespace std;
+typedef long long ll;
+typedef vector<int> vi;
+typedef vector<long long> vll;
+typedef vector<pair<ll,ll>> vpll;
+typedef vector<vector<ll>> vvll;
+#define PB push_back
+#define F first 
+#define S second 
+#define NO printf("NO\n")
+#define YES printf("YES\n")
+
+void SCANVEC(vll &vec, ll n) {
+    for(ll i = 0; i < n; i++) {
+        ll a;
+        scanf("%lld ", &a);
+        vec.PB(a);
+    }
+}
+void PRINTVEC(vll vec){
+    for(ll i=0;i<vec.size();i++){
+        printf("%lld\n",vec[i]);
+    }
+    printf("\n");
+}
+
+////////////////////////////////////////////////////////////////////////////
+
+
+
+int main(){
+    ll n;
+    scanf("%lld\n",&n);
+
+    multiset<ll> tr;
+    
+    
+    ll i=0;
+    while(i<n){
+        ll a,h;
+        scanf("%lld %lld\n",&a,&h);
+        if(a==1){
+            tr.insert(h)++;
+            
+        }else{
+            
+            auto it = tr.lower_bound(h+1);
+            tr.erase(tr.begin(), it);
+
+            
+        }
+        
+
+        printf("%lld\n",(ll)tr.size());
+        i++;
+    }
+
+    
+    
+}
