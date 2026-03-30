@@ -1,0 +1,52 @@
+#include <bits/stdc++.h>
+using namespace std;
+typedef long long ll;
+typedef long double ld;
+typedef vector<int> vi;
+typedef vector<long long> vll;
+typedef vector<pair<ll,ll>> vpll;
+typedef vector<vector<ll>> vvll;
+#define PB push_back
+#define F first 
+#define S second 
+
+void SCANVEC(vll &vec, ll n) {
+    for(ll i = 0; i < n; i++) {
+        ll a;
+        scanf("%lld ", &a);
+        vec.PB(a);
+    }
+}
+void PRINTVEC(vll vec){
+    for(ll i=0;i<vec.size();i++){
+        printf("%lld ",vec[i]);
+    }
+    printf("\n");
+}
+
+int main(){
+
+    ll q;
+    scanf("%lld\n",&q);
+
+    map<ll,ll> g;
+
+    ll i=0;
+    while(i<q){
+        ll a,b;
+        scanf("%lld %lld\n",&a,&b);
+        if(a==1){
+            g[b]++;
+        }else{
+            if(g[b]>0){
+                printf("Yes\n");
+            }else{
+                printf("No\n");
+            }
+        }
+        i++;
+    }
+
+
+    return 0;
+}
