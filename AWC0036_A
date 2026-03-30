@@ -1,0 +1,81 @@
+#include <bits/stdc++.h>
+using namespace std;
+typedef long long ll;
+typedef long double ld;
+typedef vector<int> vi;
+typedef vector<long long> vll;
+typedef vector<pair<ll,ll>> vpll;
+typedef vector<vector<ll>> vvll;
+#define PB push_back
+#define F first 
+#define S second 
+
+void SCANVEC(vll &vec, ll n) {
+    for(ll i = 0; i < n; i++) {
+        ll a;
+        scanf("%lld ", &a);
+        vec.PB(a);
+    }
+}
+void PRINTVEC(vll vec){
+    for(ll i=0;i<vec.size();i++){
+        printf("%lld ",vec[i]);
+    }
+    printf("\n");
+}
+
+int main(){
+
+    ll lib;
+    scanf("%lld\n",&lib);
+    vvll bks(lib);
+
+    vll gen;
+    ll i=0;
+    while(i<lib){
+        ll n;
+        scanf("%lld ",&n);
+        gen.PB(n);
+        ll j=0;
+        while(j<n){
+            ll a;
+            scanf("%lld ",&a);
+            bks[i].PB(a);
+
+            j++;
+        }
+        scanf("\n");
+        i++;
+    }
+
+    ll i2=0;
+    ll fail=0;
+    ll q;
+    scanf("%lld\n",&q);
+    while(i2<q){
+        ll b,c;
+        scanf("%lld %lld\n",&b,&c);
+        if(bks[b-1][c-1]!=0){
+            bks[b-1][c-1]--;
+        }else{
+            fail++;
+        }
+        i2++;
+    }
+
+    ll i3=0;
+    while(i3<lib){
+        ll j3=0;
+        while(j3<gen[i3]){
+            printf("%lld ",bks[i3][j3]);
+            j3++;
+        }
+        printf("\n");
+        i3++;
+    }
+    printf("%lld\n",fail);
+
+
+
+    return 0;
+}
